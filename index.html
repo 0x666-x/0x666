@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0x666</title>
+    <title>0x666 // ARCHIVE_NODE</title>
     <link rel="icon" type="image/jpeg" href="dog.jpeg">
     <style>
         * {
@@ -14,7 +14,7 @@
             color: #9e9e9e;
             font-family: "Courier New", Courier, monospace;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
             overflow-x: hidden;
             background-image: 
                 radial-gradient(rgba(139, 0, 0, 0.08) 1px, transparent 0),
@@ -39,10 +39,10 @@
 
         .container {
             max-width: 850px;
-            margin: 20px auto;
+            margin: 15px auto;
             border: 1px solid #2a0000;
             background-color: #080808;
-            padding: 25px;
+            padding: 15px;
             position: relative;
             z-index: 10;
             box-shadow: 0 0 25px rgba(100, 0, 0, 0.25);
@@ -53,42 +53,46 @@
             background: #110000;
             border: 1px solid #440000;
             color: #ff2a2a;
-            padding: 6px 12px;
-            font-size: 0.85em;
-            margin-bottom: 20px;
+            padding: 6px 10px;
+            font-size: 0.75em;
+            margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
             letter-spacing: 1px;
+            flex-wrap: wrap;
+            gap: 5px;
         }
 
         .header {
             text-align: center;
             border-bottom: 1px dashed #4a0000;
-            padding-bottom: 20px;
-            margin-bottom: 25px;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .header h1 {
             color: #cc0000;
-            font-size: 3em;
+            font-size: 2.2em;
             margin: 0;
-            letter-spacing: 8px;
+            letter-spacing: 6px;
             text-shadow: 2px 2px 0px #330000, -1px -1px 0px #550000;
         }
 
         .header p {
             color: #666;
-            font-size: 0.85em;
+            font-size: 0.75em;
             margin-top: 5px;
+            word-break: break-all;
         }
 
         .main-entity {
             text-align: center;
-            margin: 25px 0;
+            margin: 20px 0;
         }
 
         .main-entity img {
-            max-width: 280px;
+            max-width: 100%;
+            width: 240px;
             border: 2px solid #5a0000;
             filter: contrast(135%) grayscale(30%) brightness(85%);
             box-shadow: 0 0 20px rgba(180, 0, 0, 0.4);
@@ -97,15 +101,15 @@
         .warning-box {
             border-left: 3px solid #990000;
             background: #0e0404;
-            padding: 10px 15px;
-            font-size: 0.85em;
+            padding: 10px;
+            font-size: 0.8em;
             color: #b3b3b3;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .files-section h2 {
             color: #b30000;
-            font-size: 1.2em;
+            font-size: 1.1em;
             border-bottom: 1px solid #222;
             padding-bottom: 5px;
             margin-bottom: 15px;
@@ -120,12 +124,20 @@
         .file-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             background: #0d0d0d;
             border: 1px solid #1f1f1f;
-            padding: 12px 15px;
+            padding: 12px;
             margin-bottom: 12px;
-            transition: all 0.2s;
+            gap: 10px;
+            flex-direction: column;
+        }
+
+        @media (min-width: 600px) {
+            .file-item {
+                flex-direction: row;
+                align-items: center;
+            }
         }
 
         .file-item:hover {
@@ -136,17 +148,18 @@
         .file-info {
             display: flex;
             flex-direction: column;
+            word-break: break-all;
         }
 
         .file-name {
             color: #e0e0e0;
             font-weight: bold;
-            font-size: 1em;
+            font-size: 0.9em;
         }
 
         .file-meta {
             color: #555;
-            font-size: 0.75em;
+            font-size: 0.7em;
             margin-top: 4px;
         }
 
@@ -154,11 +167,19 @@
             background: #1a0000;
             color: #ff3333;
             border: 1px solid #660000;
-            padding: 8px 14px;
+            padding: 8px 12px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.85em;
+            font-size: 0.8em;
             cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        @media (min-width: 600px) {
+            .dl-btn {
+                width: auto;
+            }
         }
 
         .dl-btn:hover {
@@ -166,74 +187,65 @@
             color: #fff;
         }
 
+        /* Imágenes dispersas adaptadas para móviles */
         .scattered-img {
             position: fixed;
             z-index: 2;
-            opacity: 0.55;
+            opacity: 0.45;
             border: 1px solid #300000;
             filter: contrast(130%) brightness(70%) grayscale(40%);
-            transition: opacity 0.3s, transform 0.3s, z-index 0s;
-            max-width: 145px;
+            max-width: 90px;
             pointer-events: auto;
         }
 
-        .scattered-img:hover {
-            opacity: 1;
-            z-index: 50;
-            filter: contrast(110%) brightness(100%);
-            transform: scale(1.15) !important;
+        /* En celulares ocultamos el caos absoluto de position fixed para que no tapen la lectura, o los volvemos pequeños en los bordes */
+        @media (max-width: 768px) {
+            .scattered-img {
+                display: none; /* Ocultas en móvil para evitar que arruinen la lectura y la pantalla */
+            }
         }
 
         .final-relic {
-            margin-top: 60px;
-            padding-top: 30px;
+            margin-top: 40px;
+            padding-top: 20px;
             border-top: 1px solid #330000;
             text-align: center;
         }
 
         .final-relic p {
             color: #660000;
-            font-size: 0.8em;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
+            font-size: 0.75em;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
         }
 
         .final-relic img {
             width: 100%;
-            max-width: 800px;
+            max-width: 100%;
             border: 2px solid #3a0000;
             filter: contrast(120%) brightness(90%);
-            box-shadow: 0 0 35px rgba(0, 0, 0, 1);
-        }
-
-        @media (max-width: 950px) {
-            .scattered-img {
-                position: static;
-                display: inline-block;
-                margin: 8px;
-                transform: none !important;
-            }
+            box-shadow: 0 0 25px rgba(0, 0, 0, 1);
         }
     </style>
 </head>
 <body>
 
-    <!-- Imágenes dispersas -->
-    <img src="_%20(29).jpeg" class="scattered-img" style="top: 3%; left: 2%; transform: rotate(-6deg);" alt="">
-    <img src="balddog.png" class="scattered-img" style="top: 14%; right: 3%; transform: rotate(8deg);" alt="">
-    <img src="balddog2.png" class="scattered-img" style="top: 32%; left: 1.5%; transform: rotate(4deg);" alt="">
-    <img src="freehugs.jpeg" class="scattered-img" style="top: 48%; right: 2%; transform: rotate(-9deg);" alt="">
-    <img src="INEEDYOU.jpeg" class="scattered-img" style="top: 65%; left: 2.5%; transform: rotate(-4deg);" alt="">
-    <img src="kawendra%20zpax.png" class="scattered-img" style="top: 78%; right: 2.5%; transform: rotate(6deg);" alt="">
-    <img src="qmiedo.jpeg" class="scattered-img" style="top: 90%; left: 3%; transform: rotate(11deg);" alt="">
-    <img src="Scary%20Vintage%20Halloween%20Costumes.jpeg" class="scattered-img" style="top: 115%; right: 2%; transform: rotate(-5deg);" alt="">
-    <img src="The%20bald%20dog.jpeg" class="scattered-img" style="top: 135%; left: 2%; transform: rotate(7deg);" alt="">
-    <img src="vid.png" class="scattered-img" style="top: 155%; right: 3%; transform: rotate(-8deg);" alt="">
-    <img src="vid2.png" class="scattered-img" style="top: 170%; left: 3%; transform: rotate(3deg);" alt="">
+    <!-- Imágenes dispersas (Solo visibles en PC, en celular se ocultan para mantener limpio el diseño) -->
+    <img src="_%20(29).jpeg" class="scattered-img" style="top: 3%; left: 1%; transform: rotate(-6deg);" alt="">
+    <img src="balddog.png" class="scattered-img" style="top: 14%; right: 1%; transform: rotate(8deg);" alt="">
+    <img src="balddog2.png" class="scattered-img" style="top: 32%; left: 1%; transform: rotate(4deg);" alt="">
+    <img src="freehugs.jpeg" class="scattered-img" style="top: 48%; right: 1%; transform: rotate(-9deg);" alt="">
+    <img src="INEEDYOU.jpeg" class="scattered-img" style="top: 65%; left: 1%; transform: rotate(-4deg);" alt="">
+    <img src="kawendra%20zpax.png" class="scattered-img" style="top: 78%; right: 1%; transform: rotate(6deg);" alt="">
+    <img src="qmiedo.jpeg" class="scattered-img" style="top: 90%; left: 1%; transform: rotate(11deg);" alt="">
+    <img src="Scary%20Vintage%20Halloween%20Costumes.jpeg" class="scattered-img" style="top: 115%; right: 1%; transform: rotate(-5deg);" alt="">
+    <img src="The%20bald%20dog.jpeg" class="scattered-img" style="top: 135%; left: 1%; transform: rotate(7deg);" alt="">
+    <img src="vid.png" class="scattered-img" style="top: 155%; right: 1%; transform: rotate(-8deg);" alt="">
+    <img src="vid2.png" class="scattered-img" style="top: 170%; left: 1%; transform: rotate(3deg);" alt="">
 
     <div class="container">
         <div class="onion-bar">
-            <span>TOR_CIRCUIT: ESTABLISHED [ENCRYPTED]</span>
+            <span>TOR_CIRCUIT: ESTABLISHED</span>
             <span>NODE: 0x666.onion</span>
         </div>
 
@@ -250,7 +262,6 @@
             [!] AVISO: Os arquivos hospedados aqui nao possuem assinatura digital. Baixe apenas se souber o que esta fazendo. Nao espalhe fora da rede.
         </div>
 
-        <!-- Sección de los 3 archivos descargables -->
         <div class="files-section">
             <h2>&gt; ARQUIVOS_DISPONIVEIS (3)</h2>
             <ul class="file-list">
@@ -265,7 +276,7 @@
                 <li class="file-item">
                     <div class="file-info">
                         <span class="file-name">DOG666_REMAKE_v03_BY_NOX_Z7V.apk</span>
-                        <span class="file-meta">TIPO: Android Package | AUTOR: NOX_Z7V | STATUS: ESTAVEL</span>
+                        <span class="file-meta">TIPO: Android Package | AUTOR: NOX_Z7V</span>
                     </div>
                     <a href="DOG666_REMAKE_v03_BY_NOX_Z7V.apk" download="DOG666_REMAKE_v03_BY_NOX_Z7V.apk" class="dl-btn">[ BAIXAR ]</a>
                 </li>
@@ -273,7 +284,7 @@
                 <li class="file-item">
                     <div class="file-info">
                         <span class="file-name">Kawendra_zpax_v2_REMAKE_by_NOX_Z7V.apk</span>
-                        <span class="file-meta">TIPO: Android Package | AUTOR: NOX_Z7V | REV: v2</span>
+                        <span class="file-meta">TIPO: Android Package | AUTOR: NOX_Z7V</span>
                     </div>
                     <a href="Kawendra_zpax_v2_REMAKE_by_NOX_Z7V.apk" download="Kawendra_zpax_v2_REMAKE_by_NOX_Z7V.apk" class="dl-btn">[ BAIXAR ]</a>
                 </li>
