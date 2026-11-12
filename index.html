@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0x666</title>
+    <link rel="icon" type="image/jpeg" href="dog.jpeg">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #030303;
+            color: #9e9e9e;
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(rgba(139, 0, 0, 0.08) 1px, transparent 0),
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
+            background-size: 20px 20px, 100% 4px;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.97; }
+            5% { opacity: 0.85; }
+            10% { opacity: 0.99; }
+            100% { opacity: 0.98; }
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            box-shadow: inset 0 0 120px rgba(0,0,0,0.95);
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 20px auto;
+            border: 1px solid #2a0000;
+            background-color: #080808;
+            padding: 25px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 25px rgba(100, 0, 0, 0.25);
+            animation: flicker 4s infinite;
+        }
+
+        .onion-bar {
+            background: #110000;
+            border: 1px solid #440000;
+            color: #ff2a2a;
+            padding: 6px 12px;
+            font-size: 0.85em;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            letter-spacing: 1px;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 1px dashed #4a0000;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: #cc0000;
+            font-size: 3em;
+            margin: 0;
+            letter-spacing: 8px;
+            text-shadow: 2px 2px 0px #330000, -1px -1px 0px #550000;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+
+        .main-entity {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .main-entity img {
+            max-width: 280px;
+            border: 2px solid #5a0000;
+            filter: contrast(135%) grayscale(30%) brightness(85%);
+            box-shadow: 0 0 20px rgba(180, 0, 0, 0.4);
+        }
+
+        .warning-box {
+            border-left: 3px solid #990000;
+            background: #0e0404;
+            padding: 10px 15px;
+            font-size: 0.85em;
+            color: #b3b3b3;
+            margin-bottom: 25px;
+        }
+
+        .files-section h2 {
+            color: #b30000;
+            font-size: 1.2em;
+            border-bottom: 1px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0d0d0d;
+            border: 1px solid #1f1f1f;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+
+        .file-item:hover {
+            border-color: #800000;
+            background: #140505;
+        }
+
+        .file-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-name {
+            color: #e0e0e0;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .file-meta {
+            color: #555;
+            font-size: 0.75em;
+            margin-top: 4px;
+        }
+
+        .dl-btn {
+            background: #1a0000;
+            color: #ff3333;
+            border: 1px solid #660000;
+            padding: 8px 14px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.85em;
+            cursor: pointer;
+        }
+
+        .dl-btn:hover {
+            background: #800000;
+            color: #fff;
+        }
+
+        .scattered-img {
+            position: fixed;
+            z-index: 2;
+            opacity: 0.55;
+            border: 1px solid #300000;
+            filter: contrast(130%) brightness(70%) grayscale(40%);
+            transition: opacity 0.3s, transform 0.3s, z-index 0s;
+            max-width: 145px;
+            pointer-events: auto;
+        }
+
+        .scattered-img:hover {
+            opacity: 1;
+            z-index: 50;
+            filter: contrast(110%) brightness(100%);
+            transform: scale(1.15) !important;
+        }
+
+        .final-relic {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #330000;
+            text-align: center;
+        }
+
+        .final-relic p {
+            color: #660000;
+            font-size: 0.8em;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .final-relic img {
+            width: 100%;
+            max-width: 800px;
+            border: 2px solid #3a0000;
+            filter: contrast(120%) brightness(90%);
+            box-shadow: 0 0 35px rgba(0, 0, 0, 1);
+        }
+
+        @media (max-width: 950px) {
+            .scattered-img {
+                position: static;
+                display: inline-block;
+                margin: 8px;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Imágenes dispersas -->
+    <img src="_%20(29).jpeg" class="scattered-img" style="top: 3%; left: 2%; transform: rotate(-6deg);" alt="">
+    <img src="balddog.png" class="scattered-img" style="top: 14%; right: 3%; transform: rotate(8deg);" alt="">
+    <img src="balddog2.png" class="scattered-img" style="top: 32%; left: 1.5%; transform: rotate(4deg);" alt="">
+    <img src="freehugs.jpeg" class="scattered-img" style="top: 48%; right: 2%; transform: rotate(-9deg);" alt="">
+    <img src="INEEDYOU.jpeg" class="scattered-img" style="top: 65%; left: 2.5%; transform: rotate(-4deg);" alt="">
+    <img src="kawendra%20zpax.png" class="scattered-img" style="top: 78%; right: 2.5%; transform: rotate(6deg);" alt="">
+    <img src="qmiedo.jpeg" class="scattered-img" style="top: 90%; left: 3%; transform: rotate(11deg);" alt="">
+    <img src="Scary%20Vintage%20Halloween%20Costumes.jpeg" class="scattered-img" style="top: 115%; right: 2%; transform: rotate(-5deg);" alt="">
+    <img src="The%20bald%20dog.jpeg" class="scattered-img" style="top: 135%; left: 2%; transform: rotate(7deg);" alt="">
+    <img src="vid.png" class="scattered-img" style="top: 155%; right: 3%; transform: rotate(-8deg);" alt="">
+    <img src="vid2.png" class="scattered-img" style="top: 170%; left: 3%; transform: rotate(3deg);" alt="">
+
+    <div class="container">
+        <div class="onion-bar">
+            <span>TOR_CIRCUIT: ESTABLISHED [ENCRYPTED]</span>
+            <span>NODE: 0x666.onion</span>
+        </div>
+
+        <div class="header">
+            <h1>0x666</h1>
+            <p>// DIR: /hidden_packages/android_builds/ //</p>
+        </div>
+
+        <div class="main-entity">
+            <img src="dog.jpeg" alt="0x666_entity">
+        </div>
+
+        <div class="warning-box">
+            [!] AVISO: Os arquivos hospedados aqui nao possuem assinatura digital. Baixe apenas se souber o que esta fazendo. Nao espalhe fora da rede.
+        </div>
+
+        <!-- Sección de los 3 archivos descargables -->
+        <div class="files-section">
+            <h2>&gt; ARQUIVOS_DISPONIVEIS (3)</h2>
+            <ul class="file-list">
+                <li class="file-item">
+                    <div class="file-info">
+                        <span class="file-name">blunt_avi.apk</span>
+                        <span class="file-meta">TIPO: Android Package | STATUS: VERIFICADO</span>
+                    </div>
+                    <a href="blunt_avi.apk" download="blunt_avi.apk" class="dl-btn">[ BAIXAR ]</a>
+                </li>
+
+                <li class="file-item">
+                    <div class="file-info">
+                        <span class="file-name">DOG666_REMAKE_v03_BY_NOX_Z7V.apk</span>
+                        <span class="file-meta">TIPO: Android Package | AUTOR: NOX_Z7V | STATUS: ESTAVEL</span>
+                    </div>
+                    <a href="DOG666_REMAKE_v03_BY_NOX_Z7V.apk" download="DOG666_REMAKE_v03_BY_NOX_Z7V.apk" class="dl-btn">[ BAIXAR ]</a>
+                </li>
+
+                <li class="file-item">
+                    <div class="file-info">
+                        <span class="file-name">Kawendra_zpax_v2_REMAKE_by_NOX_Z7V.apk</span>
+                        <span class="file-meta">TIPO: Android Package | AUTOR: NOX_Z7V | REV: v2</span>
+                    </div>
+                    <a href="Kawendra_zpax_v2_REMAKE_by_NOX_Z7V.apk" download="Kawendra_zpax_v2_REMAKE_by_NOX_Z7V.apk" class="dl-btn">[ BAIXAR ]</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="final-relic">
+            <p>--- EVIDENCIA_FINAL :: BLUNT.AVI ---</p>
+            <img src="blunt.aviHD.png" alt="blunt.aviHD">
+        </div>
+    </div>
+
+</body>
+</html>
